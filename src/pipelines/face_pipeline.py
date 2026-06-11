@@ -59,7 +59,7 @@ def get_trained_model():
     except ValueError:
         pass
 
-    return {'clf':clf,'X':x,"y":y}
+    return {'clf':clf,'X':X,"y":y}
 
 def train_classifier():
     st.cache_resource.clear()
@@ -90,13 +90,13 @@ def predict_attendance(class_image_np):
 
         student_embedding= X_train[y_train.index(predicted_id)]
 
-        best_match_score = np.linalg.norm(student_embedding-encoding)
+        best_match_score = np.linalg.norm(student_embedding - encoding)
         
         resemblance_threshold =0.6
 
         if best_match_score<=resemblance_threshold:
             detected_students[predicted_id]= True
-    return detected_students,all_students,len(encoding)
+    return detected_students,all_students,len(encodings)
 
 
 
